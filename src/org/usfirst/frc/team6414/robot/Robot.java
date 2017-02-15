@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team6414.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -48,6 +50,11 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new Move());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+
+		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
+		cam.setResolution(640,480);
+		cam.setFPS(60);
+		SmartDashboard.putBoolean("cam.isConnected", cam.isConnected());
 	}
 
 	/**
