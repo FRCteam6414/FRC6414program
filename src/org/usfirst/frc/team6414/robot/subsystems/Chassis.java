@@ -1,13 +1,10 @@
 package org.usfirst.frc.team6414.robot.subsystems;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Move;
-
-import com.ctre.CANTalon;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -39,7 +36,7 @@ public class Chassis extends Subsystem {
 	
 	private void move(double x, double y){
 		leftMaster.set(Robot.limit(-1,1,y+x));
-		rightMaster.set(Robot.limit(-1,1,y-x));
+        rightMaster.set(Robot.limit(-1, 1, x - y));
 //        SmartDashboard.putNumber("left speed:",Robot.chassis.getVoltage()[0]);
 //        SmartDashboard.putNumber("right speed:",Robot.chassis.getVoltage()[1]);
 	}
