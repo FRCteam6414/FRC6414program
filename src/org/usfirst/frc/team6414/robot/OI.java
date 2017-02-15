@@ -20,7 +20,7 @@ public class OI {
 			 butReverseIntake = new JoystickButton(stick,RobotMap.REVERSE_INTAKE),
 			 butMixerFwd = new JoystickButton(stick,RobotMap.MIXER_FWD),
 			 butMixerBwd = new JoystickButton(stick,RobotMap.MIXER_BWD),
-			 butSetShooterDef = new JoystickButton(stick,RobotMap.MIXER_BWD),
+			butSetShooterDef = new JoystickButton(stick, RobotMap.SET_SHOOTER_DEF),
 			 butChassisAdj = new JoystickButton(stick,RobotMap.CHASSIS_ADJUST);
 	 
 	 public boolean getButSt(int port){

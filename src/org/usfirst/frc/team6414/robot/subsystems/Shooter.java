@@ -20,7 +20,7 @@ public class Shooter extends Subsystem {
     }
 
     public void refreshSpeed(double speed) {
-        speed = Robot.limit(0, 1, speed);
+        speed = Robot.limit(-1, 1, speed);
         leftShooter.set(speed);
         rightShooter.set(-speed);
     }
