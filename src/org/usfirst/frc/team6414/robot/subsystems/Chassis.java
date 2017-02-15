@@ -27,10 +27,14 @@ public class Chassis extends Subsystem {
 	}
 
 	
-	public void move(double x,double y){
+	private void move(double x, double y){
 		leftMaster.set(Robot.limit(-1,1,y+x));
 		rightMaster.set(Robot.limit(-1,1,y-x));
 	}
+
+	public double[] getVoltage(){
+	    return new double[]{leftMaster.getOutputVoltage(),rightMaster.getOutputVoltage()};
+    }
 	
 	public void moveByJoystick(){
 		move(Robot.oi.getX(),Robot.oi.getY());

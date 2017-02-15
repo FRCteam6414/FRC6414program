@@ -2,6 +2,7 @@ package org.usfirst.frc.team6414.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.Robot;
 
 /**
@@ -22,6 +23,8 @@ public class Move extends Command {
 	@Override
 	protected void execute() {
 		Robot.chassis.moveByJoystick();
+        SmartDashboard.putNumber("left speed:",Robot.chassis.getVoltage()[0]);
+        SmartDashboard.putNumber("right speed:",Robot.chassis.getVoltage()[1]);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6414.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.Robot;
 
 /**
@@ -19,6 +20,7 @@ public class Intake extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Robot.intaker.intake();
+        SmartDashboard.putNumber("Intake speed:",Robot.intaker.getVoltage());
     }
 
     // Make this return true when this Command no longer needs to run execute()

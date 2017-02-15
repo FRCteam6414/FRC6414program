@@ -26,6 +26,10 @@ public class Shooter extends Subsystem {
         rightShooter.set(RobotMap.SHOOTER_DEFAULT);
     }
 
+    public double[] getVoltage(){
+        return new double[]{leftShooter.getOutputVoltage(),rightShooter.getOutputVoltage()};
+    }
+
     public void stop() {
         leftShooter.set(0);
         rightShooter.set(0);

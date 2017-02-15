@@ -62,6 +62,9 @@ public class Intaker extends Subsystem {
             while (Robot.oi.getButSt(RobotMap.INTAKE_BUT));
         }
     }
+    public double getVoltage(){
+        return intakeMotor.getOutputVoltage();
+    }
 
     public void stop(){
         intakeMotor.set(0);

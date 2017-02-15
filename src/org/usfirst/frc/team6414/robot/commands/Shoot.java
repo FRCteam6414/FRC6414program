@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6414.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 
@@ -34,6 +35,8 @@ public class Shoot extends Command {
         } else {
             Robot.shooter.stop();
         }
+        SmartDashboard.putNumber("shooter l speed:",Robot.shooter.getVoltage()[0]);
+        SmartDashboard.putNumber("shooter r speed:",Robot.shooter.getVoltage()[1]);
     }
 
     // Make this return true when this Command no longer needs to run execute()

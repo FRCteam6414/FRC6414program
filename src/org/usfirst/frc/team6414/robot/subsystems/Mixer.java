@@ -31,6 +31,10 @@ public class Mixer extends Subsystem {
         }
     }
 
+    public double getVoltage(){
+        return mixer.getOutputVoltage();
+    }
+
     public void stop(){
         mixer.set(0);
     }
