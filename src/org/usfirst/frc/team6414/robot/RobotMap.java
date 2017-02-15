@@ -24,7 +24,7 @@ public class RobotMap {
 	public static final int RIGHT_SHOOTER = 7;
 	public static final int MIXER_MOTOR = 8;
 
-	public static final double INTAKE_DEF = 0.7;
+    public static final double INTAKE_DEF = 1;
     public static final double SHOOTER_DEFAULT = 0.7;
     public static final double MIXER_DEF =0.7;
 }
