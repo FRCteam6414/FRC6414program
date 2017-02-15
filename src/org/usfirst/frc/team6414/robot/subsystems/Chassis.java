@@ -42,7 +42,7 @@ public class Chassis extends Subsystem {
 	}
 
 	public double[] getVoltage(){
-	    return new double[]{leftMaster.getOutputVoltage(),rightMaster.getOutputVoltage()};
+        return new double[]{leftMaster.get(), rightMaster.get()};
     }
 	
 	public void moveByJoystick(){

@@ -32,7 +32,7 @@ public class Shooter extends Subsystem {
     }
 
     public double[] getVoltage(){
-        return new double[]{leftShooter.getOutputVoltage(),rightShooter.getOutputVoltage()};
+        return new double[]{leftShooter.get(), rightShooter.get()};
     }
 
     public void stop() {
