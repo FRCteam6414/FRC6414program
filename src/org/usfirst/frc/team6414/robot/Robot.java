@@ -32,8 +32,8 @@ public class Robot extends IterativeRobot {
 	public static final Intaker intaker = new Intaker();
 	public static final Mixer mixer = new Mixer();
 
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	private Command autonomousCommand;
+	private SendableChooser<Command> chooser = new SendableChooser<>();
 
 	public static double limit(double min, double max, double input){
 		return input>max?max
