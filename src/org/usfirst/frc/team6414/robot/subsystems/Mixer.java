@@ -45,7 +45,7 @@ public class Mixer extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        new Mix();
+        setDefaultCommand(new Mix());
     }
 }
 

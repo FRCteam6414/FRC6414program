@@ -76,7 +76,7 @@ public class Intaker extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        new Intake();
+        setDefaultCommand(new Intake());
     }
 }
 

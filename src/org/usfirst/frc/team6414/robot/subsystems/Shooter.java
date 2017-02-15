@@ -41,7 +41,7 @@ public class Shooter extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        new Shoot();
+        setDefaultCommand(new Shoot());
     }
 
 }
