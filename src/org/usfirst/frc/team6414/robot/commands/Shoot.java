@@ -31,7 +31,7 @@ public class Shoot extends Command {
             if (isAtDeafult) {
                 Robot.shooter.shootAtDefault();
             } else {
-                Robot.shooter.refreshSpeed((-(Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
+                Robot.shooter.refreshSpeed(((-Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
             }
         } else {
             Robot.shooter.stop();
