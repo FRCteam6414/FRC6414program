@@ -21,17 +21,17 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF)){
-            isAtDeafult  = !isAtDeafult;
-            while(Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF));
+        if (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF)) {
+            isAtDeafult = !isAtDeafult;
+            while (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF)) ;
         }
-        if(Robot.oi.getTrigger()){
-            if(isAtDeafult){
+        if (Robot.oi.getTrigger()) {
+            if (isAtDeafult) {
                 Robot.shooter.shootAtDefault();
-            }else{
-                Robot.shooter.refreshSpeed((-(Robot.oi.getThrottle()+1)/2)*0.7+0.3);
+            } else {
+                Robot.shooter.refreshSpeed((-(Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
             }
-        }else{
+        } else {
             Robot.shooter.stop();
         }
     }

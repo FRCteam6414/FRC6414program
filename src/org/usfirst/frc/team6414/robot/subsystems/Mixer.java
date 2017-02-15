@@ -14,7 +14,7 @@ import org.usfirst.frc.team6414.robot.commands.Mix;
  */
 public class Mixer extends Subsystem {
 
-    CANTalon mixer = new CANTalon(RobotMap.MIXER_MOTOR);
+    private CANTalon mixer = new CANTalon(RobotMap.MIXER_MOTOR);
     private boolean isFwd = true;
 
     public void mix(){

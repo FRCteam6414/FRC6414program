@@ -14,19 +14,19 @@ public class Shooter extends Subsystem {
     private CANTalon leftShooter = new CANTalon(RobotMap.LEFT_SHOOTER);
     private CANTalon rightShooter = new CANTalon(RobotMap.RIGHT_SHOOTER);
 
-    public void refreshSpeed(double speed){
-        speed = Robot.limit(0,1,speed);
+    public void refreshSpeed(double speed) {
+        speed = Robot.limit(0, 1, speed);
         leftShooter.set(speed);
         rightShooter.set(-speed);
     }
 
-    public void shootAtDefault(){
+    public void shootAtDefault() {
 //        refreshSpeed(RobotMap.SHOOTER_DEFAULT);
         leftShooter.set(RobotMap.SHOOTER_DEFAULT);
         rightShooter.set(RobotMap.SHOOTER_DEFAULT);
     }
 
-    public void stop(){
+    public void stop() {
         leftShooter.set(0);
         rightShooter.set(0);
     }
