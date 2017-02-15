@@ -33,6 +33,7 @@ public class Chassis extends Subsystem {
         rightSlave.enableBrakeMode(true);
         leftMaster.enableBrakeMode(true);
         leftSlave.enableBrakeMode(true);
+        System.out.println("Chassis sub system init");
     }
 
 	

@@ -54,7 +54,9 @@ public class Robot extends IterativeRobot {
 		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
 		cam.setResolution(640,480);
 		cam.setFPS(60);
-		SmartDashboard.putBoolean("cam.isConnected", cam.isConnected());
+//		SmartDashboard.putBoolean("cam.isConnected", cam.isConnected());
+        SmartDashboard.putString("Robot State:","started");
+        System.out.println("Robot init");
 	}
 
 	/**

@@ -17,6 +17,11 @@ public class Mixer extends Subsystem {
     private CANTalon mixer = new CANTalon(RobotMap.MIXER_MOTOR);
     private boolean isFwd = true;
 
+    public Mixer(){
+        super();
+        System.out.println("Mix sub system init");
+    }
+
     public void mix(){
         if(isFwd){
             mixer.set(RobotMap.MIXER_DEF);

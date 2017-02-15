@@ -22,6 +22,11 @@ public class Intaker extends Subsystem {
         BSTOP
     }
 
+    public Intaker(){
+        super();
+        System.out.println("Intake sub system init");
+    }
+
     private state getNext(state input){
         switch (input){
             case BWD:

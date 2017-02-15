@@ -22,6 +22,7 @@ public class Mix extends Command {
      * this Command is run after being started.
      */
     protected void initialize() {
+        System.out.println("mix command init");
     }
 
 
