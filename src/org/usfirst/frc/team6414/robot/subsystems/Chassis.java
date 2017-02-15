@@ -28,7 +28,12 @@ public class Chassis extends Subsystem {
 		rightSlave = new CANTalon(RobotMap.RIGHT_SLAVE);
         rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightSlave.set(rightMaster.getDeviceID());
-	}
+
+        rightMaster.enableBrakeMode(true);
+        rightSlave.enableBrakeMode(true);
+        leftMaster.enableBrakeMode(true);
+        leftSlave.enableBrakeMode(true);
+    }
 
 	
 	private void move(double x, double y){
