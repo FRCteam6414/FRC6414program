@@ -48,8 +48,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		chooser.addDefault("Default Auto", new Move());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+//		 chooser.addObject("My Auto", new MyAutoCommand());
+//		SmartDashboard.putData("Auto mode", chooser);
 
 		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
 		cam.setResolution(640,480);
