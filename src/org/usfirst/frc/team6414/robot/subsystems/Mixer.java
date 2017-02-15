@@ -67,6 +67,7 @@ public class Mixer extends Subsystem {
         if(Robot.oi.getButSt(RobotMap.MIXER_BWD)){
             state=state.bwdPressed();
         }
+        while (Robot.oi.getButSt(RobotMap.MIXER_FWD) || Robot.oi.getButSt(RobotMap.MIXER_BWD)) ;
     }
 
     public double getVoltage(){

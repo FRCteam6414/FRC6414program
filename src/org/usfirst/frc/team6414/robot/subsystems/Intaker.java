@@ -6,7 +6,7 @@ import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Intake;
 
-import static org.usfirst.frc.team6414.robot.subsystems.Intaker.state.*;
+import static org.usfirst.frc.team6414.robot.subsystems.Intaker.State.STOP;
 
 /**
  *
@@ -14,12 +14,28 @@ import static org.usfirst.frc.team6414.robot.subsystems.Intaker.state.*;
 public class Intaker extends Subsystem {
 
     private CANTalon intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
-    private state isFWD = BSTOP;
-    enum state{
-        FWD,
-        BWD,
-        FSTOP,
-        BSTOP
+    private State state = STOP;
+
+    enum State {
+        FORWARD,
+        BACKWARD,
+        STOP;
+
+        public State fwdPressed() {
+            if (this == FORWARD) {
+                return STOP;
+            } else {
+                return FORWARD;
+            }
+        }
+
+        public State bwdPressed() {
+            if (this == BACKWARD) {
+                return STOP;
+            } else {
+                return BACKWARD;
+            }
+        }
     }
 
     public Intaker(){
@@ -27,45 +43,32 @@ public class Intaker extends Subsystem {
         System.out.println("Intake sub system init");
     }
 
-    private state getNext(state input){
-        switch (input){
-            case BWD:
-                return BSTOP;
-            case FWD:
-                return FSTOP;
-            case BSTOP:
-                return FWD;
-            case FSTOP:
-                return BWD;
-            default:
-                return BWD;
-        }
-    }
     public void intake(){
-//        if(isFWD){
+//        if(state){
 //            intakeMotor.set(RobotMap.INTAKE_DEF);
 //        }else {
 //            intakeMotor.set(-RobotMap.INTAKE_DEF);
 //        }
-        switch (isFWD){
-            case BWD:
+        switch (state) {
+            case BACKWARD:
                 intakeMotor.set(-RobotMap.INTAKE_DEF);
                 break;
 
-            case FWD:
+            case FORWARD:
                 intakeMotor.set(RobotMap.INTAKE_DEF);
                 break;
 
-            case BSTOP:
-            case FSTOP:
+            case STOP:
             default:
                 intakeMotor.set(0);
                 break;
         }
         if(Robot.oi.getButSt(RobotMap.INTAKE_BUT)){
-            isFWD = getNext(isFWD);
-            while (Robot.oi.getButSt(RobotMap.INTAKE_BUT));
+            state = state.fwdPressed();
+        } else if (Robot.oi.getButSt(RobotMap.REVERSE_INTAKE)) {
+            state = state.bwdPressed();
         }
+        while (Robot.oi.getButSt(RobotMap.INTAKE_BUT) || Robot.oi.getButSt(RobotMap.REVERSE_INTAKE)) ;
     }
     public double getVoltage(){
         return intakeMotor.getOutputVoltage();
