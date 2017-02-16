@@ -46,8 +46,12 @@ public class Chassis extends Subsystem {
     }
 	
 	public void moveByJoystick(){
-		move(Robot.oi.getX(),Robot.oi.getY());
-	}
+        if (Robot.oi.getButSt(RobotMap.CHASSIS_ADJUST)) {
+            move(Robot.oi.getX() * 0.2, Robot.oi.getY() * 0.2);
+        } else {
+            move(Robot.oi.getX(), Robot.oi.getY());
+        }
+    }
 
 	public void stop(){
 		leftMaster.set(0);
