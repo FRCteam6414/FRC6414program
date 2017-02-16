@@ -21,14 +21,14 @@ public class Shooter extends Subsystem {
 
     public void refreshSpeed(double speed) {
         speed = Robot.limit(-1, 1, speed);
-        leftShooter.set(speed);
-        rightShooter.set(-speed);
+        leftShooter.set(-speed);
+        rightShooter.set(speed);
     }
 
     public void shootAtDefault() {
 //        refreshSpeed(RobotMap.SHOOTER_DEFAULT);
-        leftShooter.set(RobotMap.SHOOTER_DEFAULT);
-        rightShooter.set(-RobotMap.SHOOTER_DEFAULT);
+        leftShooter.set(-RobotMap.SHOOTER_DEFAULT);
+        rightShooter.set(RobotMap.SHOOTER_DEFAULT);
     }
 
     public double[] getVoltage(){
