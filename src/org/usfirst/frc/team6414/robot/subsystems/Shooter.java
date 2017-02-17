@@ -10,6 +10,7 @@ import org.usfirst.frc.team6414.robot.commands.Shoot;
  *
  */
 public class Shooter extends Subsystem {
+    
 
     private CANTalon leftShooter = new CANTalon(RobotMap.LEFT_SHOOTER);
     private CANTalon rightShooter = new CANTalon(RobotMap.RIGHT_SHOOTER);
