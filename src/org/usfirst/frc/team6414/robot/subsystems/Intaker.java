@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6414.robot.subsystems;
 
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team6414.robot.MonitoredSystem;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Intake;
@@ -11,7 +11,7 @@ import static org.usfirst.frc.team6414.robot.subsystems.Intaker.State.STOP;
 /**
  *
  */
-public class Intaker extends Subsystem {
+public class Intaker extends MonitoredSystem {
 
     private CANTalon intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
     private State state = STOP;
@@ -41,6 +41,9 @@ public class Intaker extends Subsystem {
     public Intaker(){
         super();
         System.out.println("Intake sub system init");
+        threadInit(() -> {
+
+        });
     }
 
     public void intake(){

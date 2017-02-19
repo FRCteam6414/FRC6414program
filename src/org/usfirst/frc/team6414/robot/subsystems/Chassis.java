@@ -1,7 +1,8 @@
 package org.usfirst.frc.team6414.robot.subsystems;
 
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team6414.robot.MonitoredSystem;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Move;
@@ -9,7 +10,7 @@ import org.usfirst.frc.team6414.robot.commands.Move;
 /**
  *
  */
-public class Chassis extends Subsystem {
+public class Chassis extends MonitoredSystem {
 	private CANTalon leftMaster;
 	private CANTalon leftSlave;
 	private CANTalon rightMaster;
@@ -31,14 +32,25 @@ public class Chassis extends Subsystem {
         leftMaster.enableBrakeMode(true);
         leftSlave.enableBrakeMode(true);
         System.out.println("Chassis sub system init");
-    }
+		threadInit(() -> {
+			while (true) {
+				SmartDashboard.putNumber("left speed:", Robot.chassis.getVoltage()[0]);
+				SmartDashboard.putNumber("right speed:", Robot.chassis.getVoltage()[1]);
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	
 	private void move(double x, double y){
 		leftMaster.set(Robot.limit(-1,1,y+x));
         rightMaster.set(Robot.limit(-1, 1, x - y));
-//        SmartDashboard.putNumber("left speed:",Robot.chassis.getVoltage()[0]);
-//        SmartDashboard.putNumber("right speed:",Robot.chassis.getVoltage()[1]);
+		SmartDashboard.putNumber("left speed:", Robot.chassis.getVoltage()[0]);
+		SmartDashboard.putNumber("right speed:", Robot.chassis.getVoltage()[1]);
 	}
 
 	public double[] getVoltage(){

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team6414.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.Robot;
 
 /**
@@ -32,7 +31,6 @@ public class Mix extends Command {
      */
     protected void execute() {
         Robot.mixer.mix();
-        SmartDashboard.putNumber("Mixer speed:",Robot.mixer.getVoltage());
     }
 
 

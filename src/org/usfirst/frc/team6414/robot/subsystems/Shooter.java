@@ -1,7 +1,8 @@
 package org.usfirst.frc.team6414.robot.subsystems;
 
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team6414.robot.MonitoredSystem;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Shoot;
@@ -9,7 +10,7 @@ import org.usfirst.frc.team6414.robot.commands.Shoot;
 /**
  *
  */
-public class Shooter extends Subsystem {
+public class Shooter extends MonitoredSystem {
 
     private CANTalon leftShooter = new CANTalon(RobotMap.LEFT_SHOOTER);
     private CANTalon rightShooter = new CANTalon(RobotMap.RIGHT_SHOOTER);
@@ -17,6 +18,10 @@ public class Shooter extends Subsystem {
     public Shooter(){
         super();
         System.out.println("shooter sub system init");
+        threadInit(() -> {
+            SmartDashboard.putNumber("shooter l speed:", leftShooter.get());
+            SmartDashboard.putNumber("shooter r speed:", rightShooter.get());
+        });
     }
 
     public void refreshSpeed(double speed) {
@@ -29,10 +34,6 @@ public class Shooter extends Subsystem {
 //        refreshSpeed(RobotMap.SHOOTER_DEFAULT);
         leftShooter.set(-RobotMap.SHOOTER_DEFAULT);
         rightShooter.set(RobotMap.SHOOTER_DEFAULT);
-    }
-
-    public double[] getVoltage(){
-        return new double[]{leftShooter.get(), rightShooter.get()};
     }
 
     public void stop() {
