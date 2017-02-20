@@ -20,6 +20,7 @@ public class Shooter extends MonitoredSystem {
         threadInit(() -> {
             SmartDashboard.putNumber("shooter l speed:", leftShooter.get());
             SmartDashboard.putNumber("shooter r speed:", rightShooter.get());
+            SmartDashboard.putNumber("shooter set @", ((-Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
         });
     }
 
