@@ -9,7 +9,8 @@ import org.usfirst.frc.team6414.robot.RobotMap;
  */
 public class Shoot extends Command {
 
-    private boolean isAtDeafult = false;
+    private boolean isAtDefault = false;
+    private boolean privDefButState = false;
 
     public Shoot() {
         requires(Robot.shooter);
@@ -22,12 +23,14 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF)) {
-            isAtDeafult = !isAtDeafult;
-            while (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF)) ;
+        if (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF) != privDefButState) {
+            privDefButState = !privDefButState;
+            if (privDefButState) {
+                isAtDefault = !isAtDefault;
+            }
         }
         if (Robot.oi.getTrigger()) {
-            if (isAtDeafult) {
+            if (isAtDefault) {
                 Robot.shooter.shootAtDefault();
             } else {
                 Robot.shooter.refreshSpeed(((-Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);

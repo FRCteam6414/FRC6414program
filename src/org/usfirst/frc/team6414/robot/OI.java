@@ -16,8 +16,8 @@ public class OI {
 	// number it is.
 	 private Joystick stick = new Joystick(RobotMap.STICK);
 	// Button button = new JoystickButton(stick, buttonNumber);
-	 private Button butIntake = new JoystickButton(stick,RobotMap.INTAKE_BUT),
-			 butReverseIntake = new JoystickButton(stick,RobotMap.REVERSE_INTAKE),
+	private Button butIntake = new JoystickButton(stick, RobotMap.INTAKE_FWD),
+			butReverseIntake = new JoystickButton(stick, RobotMap.INTAKE_BWD),
 			 butMixerFwd = new JoystickButton(stick,RobotMap.MIXER_FWD),
 			 butMixerBwd = new JoystickButton(stick,RobotMap.MIXER_BWD),
 			butSetShooterDef = new JoystickButton(stick, RobotMap.SET_SHOOTER_DEF),
@@ -25,9 +25,9 @@ public class OI {
 	 
 	 public boolean getButSt(int port){
 		 switch(port){
-		 	case RobotMap.INTAKE_BUT:
+			 case RobotMap.INTAKE_FWD:
 		 		return butIntake.get();
-		 	case RobotMap.REVERSE_INTAKE:
+			 case RobotMap.INTAKE_BWD:
 		 		return butReverseIntake.get();
 		 	case RobotMap.MIXER_FWD:
 		 		return butMixerFwd.get();

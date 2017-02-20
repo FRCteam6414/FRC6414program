@@ -15,6 +15,7 @@ public class Intaker extends MonitoredSystem {
 
     private CANTalon intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
     private State state = STOP;
+    private boolean privFwdButState = false, privBwdButState = false;
 
     enum State {
         FORWARD,
@@ -64,12 +65,18 @@ public class Intaker extends MonitoredSystem {
                 intakeMotor.set(0);
                 break;
         }
-        if(Robot.oi.getButSt(RobotMap.INTAKE_BUT)){
-            state = state.fwdPressed();
-        } else if (Robot.oi.getButSt(RobotMap.REVERSE_INTAKE)) {
-            state = state.bwdPressed();
+        if (Robot.oi.getButSt(RobotMap.INTAKE_FWD) != privFwdButState) {
+            privFwdButState = !privFwdButState;
+            if (privFwdButState) {
+                state = state.fwdPressed();
+            }
         }
-        while (Robot.oi.getButSt(RobotMap.INTAKE_BUT) || Robot.oi.getButSt(RobotMap.REVERSE_INTAKE)) ;
+        if (Robot.oi.getButSt(RobotMap.INTAKE_BWD) != privBwdButState) {
+            privBwdButState = !privBwdButState;
+            if (privBwdButState) {
+                state = state.bwdPressed();
+            }
+        }
     }
 
     public void stop(){

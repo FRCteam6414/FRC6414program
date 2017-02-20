@@ -18,6 +18,8 @@ public class Mixer extends MonitoredSystem {
 
     private CANTalon mixer = new CANTalon(RobotMap.MIXER_MOTOR);
     private State state = State.STOP;
+    private boolean privFwdButState = false, privBwdButState = false;
+
     enum State{
         FORWARD,
         STOP,
@@ -57,13 +59,18 @@ public class Mixer extends MonitoredSystem {
             default:
                 mixer.set(0);
         }
-        if(Robot.oi.getButSt(RobotMap.MIXER_FWD)){
-            state=state.fwdPressed();
+        if (Robot.oi.getButSt(RobotMap.MIXER_FWD) != privFwdButState) {
+            privFwdButState = !privFwdButState;
+            if (privFwdButState) {
+                state = state.fwdPressed();
+            }
         }
-        if(Robot.oi.getButSt(RobotMap.MIXER_BWD)){
-            state=state.bwdPressed();
+        if (Robot.oi.getButSt(RobotMap.MIXER_BWD) != privBwdButState) {
+            privBwdButState = !privBwdButState;
+            if (privBwdButState) {
+                state = state.bwdPressed();
+            }
         }
-        while (Robot.oi.getButSt(RobotMap.MIXER_FWD) || Robot.oi.getButSt(RobotMap.MIXER_BWD)) ;
     }
 
 
