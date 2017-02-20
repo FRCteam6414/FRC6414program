@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6414.robot.subsystems;
 
 import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Mix;
@@ -14,7 +14,7 @@ import org.usfirst.frc.team6414.robot.commands.Mix;
  * @author willson
  *         published under GNU Protocol
  */
-public class Mixer extends Subsystem {
+public class Mixer extends MonitoredSystem {
 
     private CANTalon mixer = new CANTalon(RobotMap.MIXER_MOTOR);
     private State state = State.STOP;
@@ -42,14 +42,10 @@ public class Mixer extends Subsystem {
     public Mixer(){
         super();
         System.out.println("Mix sub system init");
+        threadInit(() -> SmartDashboard.putNumber("Mixer speed:", mixer.get()));
     }
 
     public void mix(){
-//        if(isFwd){
-//            mixer.set(RobotMap.MIXER_DEF);
-//        }else{
-//            mixer.set(-RobotMap.MIXER_DEF);
-//        }
         switch (state){
             case FORWARD:
                 mixer.set(RobotMap.MIXER_DEF);
@@ -70,9 +66,6 @@ public class Mixer extends Subsystem {
         while (Robot.oi.getButSt(RobotMap.MIXER_FWD) || Robot.oi.getButSt(RobotMap.MIXER_BWD)) ;
     }
 
-    public double getVoltage(){
-        return mixer.get();
-    }
 
     public void stop(){
         mixer.set(0);
