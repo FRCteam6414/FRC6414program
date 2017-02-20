@@ -7,13 +7,13 @@ package org.usfirst.frc.team6414.robot;
  * floating around.
  */
 public class RobotMap {
-	public static final int STICK = 0;
     public static final int CHASSIS_ADJUST = 2;
     public static final int INTAKE_FWD = 3;
     public static final int MIXER_FWD = 4;
     public static final int INTAKE_BWD = 5;
     public static final int MIXER_BWD = 6;
     public static final int SET_SHOOTER_DEF = 7;
+    static final int STICK = 0;
 
     public static final int RIGHT_MASTER = 1;
     public static final int RIGHT_SLAVE = 2;
