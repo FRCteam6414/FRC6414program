@@ -21,9 +21,11 @@ public class OI {
 			 butMixerFwd = new JoystickButton(stick,RobotMap.MIXER_FWD),
 			 butMixerBwd = new JoystickButton(stick,RobotMap.MIXER_BWD),
 			butSetShooterDef = new JoystickButton(stick, RobotMap.SET_SHOOTER_DEF),
-			 butChassisAdj = new JoystickButton(stick,RobotMap.CHASSIS_ADJUST);
-	 
-	 public boolean getButSt(int port){
+            butChassisAdj = new JoystickButton(stick, RobotMap.CHASSIS_ADJUST),
+            butPointShoot = new JoystickButton(stick, RobotMap.POINT_SHOOT),
+            butShooterBwd = new JoystickButton(stick, RobotMap.SHOOTER_BWD);
+
+    public boolean getButSt(int port){
 		 switch(port){
 			 case RobotMap.INTAKE_FWD:
 		 		return butIntake.get();
@@ -37,7 +39,11 @@ public class OI {
 				 return butChassisAdj.get();
 			 case RobotMap.SET_SHOOTER_DEF:
 				 return butSetShooterDef.get();
-		 	default:
+             case RobotMap.POINT_SHOOT:
+                 return butPointShoot.get();
+             case RobotMap.SHOOTER_BWD:
+                 return butShooterBwd.get();
+             default:
 		 		return new JoystickButton(stick,port).get();
 		 }
 	 }

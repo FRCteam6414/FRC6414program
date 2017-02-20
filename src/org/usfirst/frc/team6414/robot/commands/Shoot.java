@@ -23,6 +23,10 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if (Robot.oi.getButSt(RobotMap.SHOOTER_BWD)) {
+            Robot.shooter.refreshSpeed(-0.5);
+            return;
+        }
         if (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF) != privDefButState) {
             privDefButState = !privDefButState;
             if (privDefButState) {
@@ -35,11 +39,15 @@ public class Shoot extends Command {
             } else {
                 Robot.shooter.refreshSpeed(((-Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
             }
-            long now = System.currentTimeMillis();
-            while (System.currentTimeMillis() < 500) ;
+            if (Robot.oi.getButSt(RobotMap.POINT_SHOOT)) {
+                long now = System.currentTimeMillis();
+                while (System.currentTimeMillis() < now + 300) ;
+                Robot.shooter.stop();
+                while (Robot.oi.getTrigger()) ;
+            }
+        } else {
+            Robot.shooter.stop();
         }
-        Robot.shooter.stop();
-
     }
 
     // Make this return true when this Command no longer needs to run execute()

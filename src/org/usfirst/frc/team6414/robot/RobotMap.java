@@ -13,6 +13,8 @@ public class RobotMap {
     public static final int INTAKE_BWD = 5;
     public static final int MIXER_BWD = 6;
     public static final int SET_SHOOTER_DEF = 7;
+    public static final int POINT_SHOOT = 10;
+    public static final int SHOOTER_BWD = 11;
     static final int STICK = 0;
 
     public static final int RIGHT_MASTER = 1;

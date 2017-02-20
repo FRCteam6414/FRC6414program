@@ -6,11 +6,9 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team6414.robot.commands.Move;
 import org.usfirst.frc.team6414.robot.subsystems.Chassis;
 import org.usfirst.frc.team6414.robot.subsystems.Intaker;
@@ -31,9 +29,14 @@ public class Robot extends IterativeRobot {
 	public static final Shooter shooter = new Shooter();
 	public static final Intaker intaker = new Intaker();
 	public static final Mixer mixer = new Mixer();
+    private static boolean isEnabled = false;
 
 	private Command autonomousCommand;
 	private SendableChooser<Command> chooser = new SendableChooser<>();
+
+    public static boolean staticIsEnabled() {
+        return isEnabled;
+    }
 
 	public static double limit(double min, double max, double input){
 		return input>max?max
@@ -57,7 +60,8 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putBoolean("cam.isConnected", cam.isConnected());
         SmartDashboard.putString("Robot State:","started");
         System.out.println("Robot init");
-	}
+        isEnabled = true;
+    }
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -66,8 +70,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
-	}
+        isEnabled = false;
+    }
 
 	@Override
 	public void disabledPeriodic() {
