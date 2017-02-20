@@ -35,9 +35,11 @@ public class Shoot extends Command {
             } else {
                 Robot.shooter.refreshSpeed(((-Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
             }
-        } else {
-            Robot.shooter.stop();
+            long now = System.currentTimeMillis();
+            while (System.currentTimeMillis() < 500) ;
         }
+        Robot.shooter.stop();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
