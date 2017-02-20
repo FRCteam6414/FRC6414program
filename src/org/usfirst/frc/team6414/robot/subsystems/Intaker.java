@@ -1,7 +1,7 @@
 package org.usfirst.frc.team6414.robot.subsystems;
 
 import com.ctre.CANTalon;
-import org.usfirst.frc.team6414.robot.MonitoredSystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Intake;
@@ -41,9 +41,7 @@ public class Intaker extends MonitoredSystem {
     public Intaker(){
         super();
         System.out.println("Intake sub system init");
-        threadInit(() -> {
-
-        });
+        threadInit(() -> SmartDashboard.putNumber("Intake speed:", intakeMotor.get()));
     }
 
     public void intake(){
@@ -72,9 +70,6 @@ public class Intaker extends MonitoredSystem {
             state = state.bwdPressed();
         }
         while (Robot.oi.getButSt(RobotMap.INTAKE_BUT) || Robot.oi.getButSt(RobotMap.REVERSE_INTAKE)) ;
-    }
-    public double getVoltage(){
-        return intakeMotor.get();
     }
 
     public void stop(){

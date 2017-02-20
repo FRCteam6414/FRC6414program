@@ -2,7 +2,6 @@ package org.usfirst.frc.team6414.robot.subsystems;
 
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team6414.robot.MonitoredSystem;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Mix;
@@ -43,9 +42,7 @@ public class Mixer extends MonitoredSystem {
     public Mixer(){
         super();
         System.out.println("Mix sub system init");
-        threadInit(() -> {
-            SmartDashboard.putNumber("Mixer speed:", mixer.get());
-        });
+        threadInit(() -> SmartDashboard.putNumber("Mixer speed:", mixer.get()));
     }
 
     public void mix(){
