@@ -39,13 +39,13 @@ public class Intaker extends MonitoredSystem {
         }
     }
 
-    public Intaker(){
+    public Intaker() {
         super();
         System.out.println("Intake sub system init");
         threadInit(() -> SmartDashboard.putNumber("Intake speed:", intakeMotor.get()));
     }
 
-    public void intake(){
+    public void intake() {
 //        if(state){
 //            intakeMotor.set(RobotMap.INTAKE_DEF);
 //        }else {
@@ -79,7 +79,7 @@ public class Intaker extends MonitoredSystem {
         }
     }
 
-    public void stop(){
+    public void stop() {
         intakeMotor.set(0);
     }
 

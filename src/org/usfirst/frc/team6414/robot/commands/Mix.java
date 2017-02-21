@@ -12,7 +12,7 @@ import org.usfirst.frc.team6414.robot.Robot;
 public class Mix extends Command {
     public Mix() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.mixer);
+        requires(Robot.mixer);
     }
 
 

@@ -14,7 +14,7 @@ public class Shooter extends MonitoredSystem {
     private CANTalon leftShooter = new CANTalon(RobotMap.LEFT_SHOOTER);
     private CANTalon rightShooter = new CANTalon(RobotMap.RIGHT_SHOOTER);
 
-    public Shooter(){
+    public Shooter() {
         super();
         System.out.println("shooter sub system init");
         threadInit(() -> {
@@ -25,7 +25,7 @@ public class Shooter extends MonitoredSystem {
     }
 
     public void refreshSpeed(double speed) {
-        speed = Robot.limit(-1, 1, speed);
+        speed = Robot.limit(-1, 0.9, speed);
         leftShooter.set(-speed);
         rightShooter.set(speed);
     }

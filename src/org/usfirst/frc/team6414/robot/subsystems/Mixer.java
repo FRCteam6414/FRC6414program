@@ -7,7 +7,6 @@ import org.usfirst.frc.team6414.robot.RobotMap;
 import org.usfirst.frc.team6414.robot.commands.Mix;
 
 
-
 /**
  * Created by willson on 2017/2/14.
  *
@@ -20,35 +19,37 @@ public class Mixer extends MonitoredSystem {
     private State state = State.STOP;
     private boolean privFwdButState = false, privBwdButState = false;
 
-    enum State{
+    enum State {
         FORWARD,
         STOP,
         BACKWARD;
-        public State fwdPressed(){
+
+        public State fwdPressed() {
             if (this == FORWARD) {
                 return STOP;
-            }else{
+            } else {
                 return FORWARD;
             }
         }
-        public State bwdPressed(){
+
+        public State bwdPressed() {
             if (this == BACKWARD) {
                 return STOP;
-            }else{
+            } else {
                 return BACKWARD;
             }
         }
     }
 
 
-    public Mixer(){
+    public Mixer() {
         super();
         System.out.println("Mix sub system init");
         threadInit(() -> SmartDashboard.putNumber("Mixer speed:", mixer.get()));
     }
 
-    public void mix(){
-        switch (state){
+    public void mix() {
+        switch (state) {
             case FORWARD:
                 mixer.set(RobotMap.MIXER_DEF);
                 break;
@@ -74,7 +75,7 @@ public class Mixer extends MonitoredSystem {
     }
 
 
-    public void stop(){
+    public void stop() {
         mixer.set(0);
     }
 

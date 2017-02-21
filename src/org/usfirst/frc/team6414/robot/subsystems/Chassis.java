@@ -10,43 +10,41 @@ import org.usfirst.frc.team6414.robot.commands.Move;
  *
  */
 public class Chassis extends MonitoredSystem {
-	private CANTalon leftMaster;
-	private CANTalon leftSlave;
-	private CANTalon rightMaster;
-	private CANTalon rightSlave;
+    private CANTalon leftMaster;
+    private CANTalon leftSlave;
+    private CANTalon rightMaster;
+    private CANTalon rightSlave;
 
-	public Chassis(){
-		leftMaster = new CANTalon(RobotMap.LEFT_MASTER);
-		leftSlave = new CANTalon(RobotMap.LEFT_SLAVE);
-		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
-		leftSlave.set(leftMaster.getDeviceID());
+    public Chassis() {
+        leftMaster = new CANTalon(RobotMap.LEFT_MASTER);
+        leftSlave = new CANTalon(RobotMap.LEFT_SLAVE);
+        leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+        leftSlave.set(leftMaster.getDeviceID());
 
-		rightMaster = new CANTalon(RobotMap.RIGHT_MASTER);
-		rightSlave = new CANTalon(RobotMap.RIGHT_SLAVE);
+        rightMaster = new CANTalon(RobotMap.RIGHT_MASTER);
+        rightSlave = new CANTalon(RobotMap.RIGHT_SLAVE);
         rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
-		rightSlave.set(rightMaster.getDeviceID());
+        rightSlave.set(rightMaster.getDeviceID());
 
         rightMaster.enableBrakeMode(true);
         rightSlave.enableBrakeMode(true);
         leftMaster.enableBrakeMode(true);
         leftSlave.enableBrakeMode(true);
         System.out.println("Chassis sub system init");
-		threadInit(() -> {
-			while (true) {
-				SmartDashboard.putNumber("left speed:", leftMaster.get());
-				SmartDashboard.putNumber("right speed:", rightMaster.get());
-			}
-		});
-	}
+        threadInit(() -> {
+            SmartDashboard.putNumber("left speed:", leftMaster.get());
+            SmartDashboard.putNumber("right speed:", rightMaster.get());
+        });
+    }
 
-	
-	private void move(double x, double y){
-		leftMaster.set(Robot.limit(-1,1,y+x));
+
+    private void move(double x, double y) {
+        leftMaster.set(Robot.limit(-1, 1, y + x));
         rightMaster.set(Robot.limit(-1, 1, x - y));
-	}
+    }
 
-	
-	public void moveByJoystick(){
+
+    public void moveByJoystick() {
         if (Robot.oi.getButSt(RobotMap.CHASSIS_ADJUST)) {
             move(Robot.oi.getX() * 0.2, Robot.oi.getY() * 0.2);
         } else {
@@ -54,12 +52,12 @@ public class Chassis extends MonitoredSystem {
         }
     }
 
-	public void stop(){
-		leftMaster.set(0);
-		rightMaster.set(0);
-	}
+    public void stop() {
+        leftMaster.set(0);
+        rightMaster.set(0);
+    }
 
-	public void initDefaultCommand() {
-		setDefaultCommand(new Move());
-	}
+    public void initDefaultCommand() {
+        setDefaultCommand(new Move());
+    }
 }
