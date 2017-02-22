@@ -13,7 +13,7 @@ public class MonitoredSystem extends Subsystem {
     private Thread moniter;
     private boolean isRunning = true;
 
-    void threadInit(MonitorExe me) {
+    void threadInit(Runnable me) {
         moniter = new Thread(() -> {
             while (isRunning) {
                 me.run();
@@ -36,15 +36,5 @@ public class MonitoredSystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-    }
-
-    /**
-     * Created by willson on 2017/2/19.
-     *
-     * @author willson
-     *         published under GNU Protocol
-     */
-    public interface MonitorExe {
-        void run();
     }
 }
