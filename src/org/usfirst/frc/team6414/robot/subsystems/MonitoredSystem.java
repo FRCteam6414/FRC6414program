@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author willson
  *         published under GNU Protocol
  */
-public class MonitoredSystem extends Subsystem {
+public abstract class MonitoredSystem extends Subsystem {
 
     private Thread moniter;
     private boolean isRunning = true;

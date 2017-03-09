@@ -54,6 +54,7 @@ public class Robot extends IterativeRobot {
 //		 chooser.addObject("My Auto", new MyAutoCommand());
 //		SmartDashboard.putData("Auto mode", chooser);
 
+
         UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
         cam.setResolution(640, 480);
         cam.setFPS(60);

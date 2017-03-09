@@ -38,7 +38,7 @@ public class Chassis extends MonitoredSystem {
     }
 
 
-    private void move(double x, double y) {
+    public void move(double x, double y) {
         leftMaster.set(Robot.limit(-1, 1, y + x));
         rightMaster.set(Robot.limit(-1, 1, x - y));
     }
