@@ -10,15 +10,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public abstract class MonitoredSystem extends Subsystem {
 
-    private Thread moniter;
+    private Thread monitor;
     private boolean isRunning = true;
+    private long sleepTime = 200;
 
     void threadInit(Runnable me) {
-        moniter = new Thread(() -> {
+        monitor = new Thread(() -> {
             while (isRunning) {
                 me.run();
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(sleepTime);
                 } catch (Exception a) {
                     a.printStackTrace();
                 }
@@ -26,8 +27,12 @@ public abstract class MonitoredSystem extends Subsystem {
         });
     }
 
+    public void setSleepTime(long sleepTime) {
+        this.sleepTime = sleepTime;
+    }
+
     public void startMonitor() {
-        moniter.start();
+        monitor.start();
     }
 
     public void stopMonitor() {

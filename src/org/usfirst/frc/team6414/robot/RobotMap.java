@@ -29,4 +29,12 @@ public class RobotMap {
     public static final double INTAKE_DEF = 1;
     public static final double SHOOTER_DEFAULT = 0.7;
     public static final double MIXER_DEF = 0.5;
+
+    public static final double US_PULSE = 0.00001; //10us per ping for hc-SR04 module
+    public static final int LEFT_ECHO = 0;
+    public static final int LEFT_PULSE = 1;
+    public static final int RIGHT_ECHO = 2;
+    public static final int RIGHT_PULSE = 3;
+    public static final double SPEED_OF_SOUND = 340;
+    public static final double SENSOR_DIST = 100;
 }

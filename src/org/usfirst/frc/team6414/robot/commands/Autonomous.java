@@ -2,6 +2,13 @@ package org.usfirst.frc.team6414.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6414.robot.Robot;
+import org.usfirst.frc.team6414.robot.RobotMap;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+//import javax.swing.*;
+
 
 /**
  * Created by willson on 2017/3/8.
@@ -10,7 +17,7 @@ import org.usfirst.frc.team6414.robot.Robot;
  *         published under GNU Protocol
  */
 public class Autonomous extends Command {
-    private long startTime;
+    private double startDistance = -1;
 
     public Autonomous() {
         requires(Robot.chassis);
@@ -22,17 +29,40 @@ public class Autonomous extends Command {
      * this Command is run after being started.
      */
     protected void initialize() {
-        Robot.chassis.move(1, 1);
-        startTime = System.currentTimeMillis();
+        this.setTimeout(15);
+        new Timer().schedule(new TimerTask() {
+            public void run() {
+                double blur = 0;
+                for (int i = 0; i < 10; i++) {
+                    blur += getDistance();
+                }
+                startDistance = blur / 10.0;
+                this.cancel();
+            }
+        }, 110);
+
     }
 
+    private double speed(double distant) {
+        return Math.sqrt(-distant + startDistance)
+                / Math.sqrt(startDistance);
+    }
+
+    private double getDistance() {
+        return 0.5 * (Robot.uSensor.getLeftDistant() + Robot.uSensor.getRightDistant());
+    }
+
+    private double getRotate() {
+        return (Robot.uSensor.getRightDistant() - Robot.uSensor.getLeftDistant())
+                / 1.414 * RobotMap.SENSOR_DIST;
+    }
 
     /**
      * The execute method is called repeatedly when this Command is
      * scheduled to run until this Command either finishes or is canceled.
      */
     protected void execute() {
-        //todo : add sr04 here
+        Robot.chassis.move(speed(getDistance()), getRotate());
     }
 
 
@@ -54,7 +84,7 @@ public class Autonomous extends Command {
      * @see Command#isTimedOut() isTimedOut()
      */
     protected boolean isFinished() {
-        return System.currentTimeMillis() >= startTime + 2000;
+        return false;
     }
 
 

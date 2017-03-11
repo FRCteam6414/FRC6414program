@@ -13,7 +13,7 @@ import org.usfirst.frc.team6414.robot.commands.Mix;
  * @author willson
  *         published under GNU Protocol
  */
-public class Mixer extends MonitoredSystem {
+public class Stirrer extends MonitoredSystem {
 
     private CANTalon mixer = new CANTalon(RobotMap.MIXER_MOTOR);
     private State state = State.STOP;
@@ -42,10 +42,10 @@ public class Mixer extends MonitoredSystem {
     }
 
 
-    public Mixer() {
+    public Stirrer() {
         super();
         System.out.println("Mix sub system init");
-        threadInit(() -> SmartDashboard.putNumber("Mixer speed:", mixer.get()));
+        threadInit(() -> SmartDashboard.putNumber("Stirrer speed:", mixer.get()));
     }
 
     public void mix() {

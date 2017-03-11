@@ -12,7 +12,7 @@ import org.usfirst.frc.team6414.robot.Robot;
 public class Mix extends Command {
     public Mix() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.mixer);
+        requires(Robot.stirrer);
     }
 
 
@@ -30,7 +30,7 @@ public class Mix extends Command {
      * scheduled to run until this Command either finishes or is canceled.
      */
     protected void execute() {
-        Robot.mixer.mix();
+        Robot.stirrer.mix();
     }
 
 
@@ -64,7 +64,7 @@ public class Mix extends Command {
      * command.
      */
     protected void end() {
-        Robot.mixer.stop();
+        Robot.stirrer.stop();
     }
 
 

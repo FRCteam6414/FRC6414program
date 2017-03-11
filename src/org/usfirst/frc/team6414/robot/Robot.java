@@ -9,10 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.commands.Move;
-import org.usfirst.frc.team6414.robot.subsystems.Chassis;
-import org.usfirst.frc.team6414.robot.subsystems.Intaker;
-import org.usfirst.frc.team6414.robot.subsystems.Mixer;
-import org.usfirst.frc.team6414.robot.subsystems.Shooter;
+import org.usfirst.frc.team6414.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,7 +24,8 @@ public class Robot extends IterativeRobot {
     public static final Chassis chassis = new Chassis();
     public static final Shooter shooter = new Shooter();
     public static final Intaker intaker = new Intaker();
-    public static final Mixer mixer = new Mixer();
+    public static final Stirrer stirrer = new Stirrer();
+    public static final USensor uSensor = new USensor();
 //    private static boolean isEnabled = false;
 
     private Command autonomousCommand;
@@ -58,14 +56,19 @@ public class Robot extends IterativeRobot {
         UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
         cam.setResolution(640, 480);
         cam.setFPS(60);
-//		SmartDashboard.putBoolean("cam.isConnected", cam.isConnected());
         SmartDashboard.putString("Robot State:", "started");
         System.out.println("Robot init");
-//        isEnabled = true;
         chassis.startMonitor();
         intaker.startMonitor();
+
+        shooter.setSleepTime(100);
         shooter.startMonitor();
-        mixer.startMonitor();
+
+        stirrer.setSleepTime(300);
+        stirrer.startMonitor();
+
+        uSensor.setSleepTime(100);
+        uSensor.startMonitor();
     }
 
     /**
@@ -79,7 +82,8 @@ public class Robot extends IterativeRobot {
         chassis.stopMonitor();
         intaker.stopMonitor();
         shooter.stopMonitor();
-        mixer.stopMonitor();
+        stirrer.stopMonitor();
+        uSensor.stopMonitor();
     }
 
     @Override
