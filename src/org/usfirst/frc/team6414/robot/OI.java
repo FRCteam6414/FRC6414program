@@ -22,7 +22,6 @@ public class OI {
             butMixerBwd = new JoystickButton(stick, RobotMap.MIXER_BWD),
             butSetShooterDef = new JoystickButton(stick, RobotMap.SET_SHOOTER_DEF),
             butChassisAdj = new JoystickButton(stick, RobotMap.CHASSIS_ADJUST),
-            butPointShoot = new JoystickButton(stick, RobotMap.POINT_SHOOT),
             butShooterBwd = new JoystickButton(stick, RobotMap.SHOOTER_BWD);
 
     public boolean getButSt(int port) {
@@ -39,8 +38,6 @@ public class OI {
                 return butChassisAdj.get();
             case RobotMap.SET_SHOOTER_DEF:
                 return butSetShooterDef.get();
-            case RobotMap.POINT_SHOOT:
-                return butPointShoot.get();
             case RobotMap.SHOOTER_BWD:
                 return butShooterBwd.get();
             default:
@@ -63,23 +60,4 @@ public class OI {
     public boolean getTrigger() {
         return stick.getTrigger();
     }
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-
-    // Start the command when the button is released and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
 }

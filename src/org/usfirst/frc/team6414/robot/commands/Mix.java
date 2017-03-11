@@ -52,7 +52,6 @@ public class Mix extends Command {
      * @see Command#isTimedOut() isTimedOut()
      */
     protected boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return false;
     }
 

@@ -10,10 +10,8 @@ import org.usfirst.frc.team6414.robot.commands.Move;
  *
  */
 public class Chassis extends MonitoredSystem {
-    private CANTalon leftMaster;
-    private CANTalon leftSlave;
-    private CANTalon rightMaster;
-    private CANTalon rightSlave;
+    private CANTalon leftMaster, leftSlave;
+    private CANTalon rightMaster, rightSlave;
 
     public Chassis() {
         leftMaster = new CANTalon(RobotMap.LEFT_MASTER);
@@ -31,6 +29,7 @@ public class Chassis extends MonitoredSystem {
         leftMaster.enableBrakeMode(true);
         leftSlave.enableBrakeMode(true);
         System.out.println("Chassis sub system init");
+
         threadInit(() -> {
             SmartDashboard.putNumber("left speed:", leftMaster.get());
             SmartDashboard.putNumber("right speed:", rightMaster.get());
@@ -53,6 +52,8 @@ public class Chassis extends MonitoredSystem {
     }
 
     public void stop() {
+        leftSlave.set(leftMaster.getDeviceID());
+        rightSlave.set(rightMaster.getDeviceID());
         leftMaster.set(0);
         rightMaster.set(0);
     }

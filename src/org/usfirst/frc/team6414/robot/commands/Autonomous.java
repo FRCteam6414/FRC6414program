@@ -4,11 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6414.robot.Robot;
 import org.usfirst.frc.team6414.robot.RobotMap;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-//import javax.swing.*;
-
 
 /**
  * Created by willson on 2017/3/8.
@@ -17,7 +12,6 @@ import java.util.TimerTask;
  *         published under GNU Protocol
  */
 public class Autonomous extends Command {
-    private double startDistance = -1;
 
     public Autonomous() {
         requires(Robot.chassis);
@@ -30,22 +24,11 @@ public class Autonomous extends Command {
      */
     protected void initialize() {
         this.setTimeout(15);
-        new Timer().schedule(new TimerTask() {
-            public void run() {
-                double blur = 0;
-                for (int i = 0; i < 10; i++) {
-                    blur += getDistance();
-                }
-                startDistance = blur / 10.0;
-                this.cancel();
-            }
-        }, 110);
-
     }
 
     private double speed(double distant) {
-        return Math.sqrt(-distant + startDistance)
-                / Math.sqrt(startDistance);
+        return Math.sqrt(-distant + RobotMap.START_DISTANT)
+                / Math.sqrt(RobotMap.START_DISTANT);
     }
 
     private double getDistance() {

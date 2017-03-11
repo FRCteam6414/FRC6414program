@@ -13,7 +13,6 @@ public class RobotMap {
     public static final int INTAKE_BWD = 5;
     public static final int MIXER_BWD = 6;
     public static final int SET_SHOOTER_DEF = 7;
-    public static final int POINT_SHOOT = 10;
     public static final int SHOOTER_BWD = 11;
     static final int STICK = 0;
 
@@ -37,4 +36,5 @@ public class RobotMap {
     public static final int RIGHT_PULSE = 3;
     public static final double SPEED_OF_SOUND = 340;
     public static final double SENSOR_DIST = 100;
+    public static final double START_DISTANT = 300;
 }

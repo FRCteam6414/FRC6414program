@@ -39,12 +39,6 @@ public class Shoot extends Command {
             } else {
                 Robot.shooter.refreshSpeed(((-Robot.oi.getThrottle() + 1) / 2) * 0.7 + 0.3);
             }
-            if (Robot.oi.getButSt(RobotMap.POINT_SHOOT)) {
-                long now = System.currentTimeMillis();
-                while (System.currentTimeMillis() < now + 300) ;
-                Robot.shooter.stop();
-                while (Robot.oi.getTrigger()) ;
-            }
         } else {
             Robot.shooter.stop();
         }
