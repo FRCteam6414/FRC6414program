@@ -13,6 +13,9 @@ public class Chassis extends MonitoredSystem {
     private CANTalon leftMaster, leftSlave;
     private CANTalon rightMaster, rightSlave;
 
+    /**This constructor
+     *
+     */
     public Chassis() {
         leftMaster = new CANTalon(RobotMap.LEFT_MASTER);
         leftSlave = new CANTalon(RobotMap.LEFT_SLAVE);
@@ -22,7 +25,7 @@ public class Chassis extends MonitoredSystem {
         rightMaster = new CANTalon(RobotMap.RIGHT_MASTER);
         rightSlave = new CANTalon(RobotMap.RIGHT_SLAVE);
         rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
-        rightSlave.set(rightMaster.getDeviceID());
+		rightSlave.set(rightMaster.getDeviceID());
 
         rightMaster.enableBrakeMode(true);
         rightSlave.enableBrakeMode(true);

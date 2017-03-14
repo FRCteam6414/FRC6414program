@@ -34,6 +34,7 @@ public class Mix extends Command {
     }
 
 
+
     /**
      * <p>
      * Returns whether this command is finished. If it is, then the command will be removed and
