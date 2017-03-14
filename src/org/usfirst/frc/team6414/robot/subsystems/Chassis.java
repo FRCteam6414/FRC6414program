@@ -44,7 +44,7 @@ public class Chassis extends MonitoredSystem {
 
 
     public void moveByJoystick() {
-        if (Robot.oi.getButSt(RobotMap.CHASSIS_ADJUST)) {
+        if (Robot.oi.getButtonState(RobotMap.CHASSIS_ADJUST)) {
             move(Robot.oi.getX() * 0.2, Robot.oi.getY() * 0.2);
         } else {
             move(Robot.oi.getX(), Robot.oi.getY());

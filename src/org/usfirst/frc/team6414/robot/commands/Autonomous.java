@@ -21,14 +21,20 @@ public class Autonomous extends Command {
     /**
      * The initialize method is called just before the first time
      * this Command is run after being started.
+     *
      */
     protected void initialize() {
         this.setTimeout(15);
     }
 
+    /**
+     * @param distant distant form robot to the wall of control station (average)
+     * @return the speed it should go at a certain distance. Closer, slower.
+     * max=1, min=0, f'(x)=-2sqrt(a)/(2sqrt(-x+a))
+     * f(x)=sqrt(-x+a)/sqrt(a) => sqrt(-x/a+1)
+     */
     private double speed(double distant) {
-        return Math.sqrt(-distant + RobotMap.START_DISTANT)
-                / Math.sqrt(RobotMap.START_DISTANT);
+        return Math.sqrt(-distant / RobotMap.START_DISTANT + 1);
     }
 
     private double getDistance() {

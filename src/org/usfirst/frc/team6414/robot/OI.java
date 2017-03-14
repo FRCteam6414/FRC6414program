@@ -24,7 +24,7 @@ public class OI {
             butChassisAdj = new JoystickButton(stick, RobotMap.CHASSIS_ADJUST),
             butShooterBwd = new JoystickButton(stick, RobotMap.SHOOTER_BWD);
 
-    public boolean getButSt(int port) {
+    public boolean getButtonState(int port) {
         switch (port) {
             case RobotMap.INTAKE_FWD:
                 return butIntake.get();

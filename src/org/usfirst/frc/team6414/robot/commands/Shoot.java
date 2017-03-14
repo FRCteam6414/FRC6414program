@@ -23,11 +23,11 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.oi.getButSt(RobotMap.SHOOTER_BWD)) {
+        if (Robot.oi.getButtonState(RobotMap.SHOOTER_BWD)) {
             Robot.shooter.refreshSpeed(-0.5);
             return;
         }
-        if (Robot.oi.getButSt(RobotMap.SET_SHOOTER_DEF) != privDefButState) {
+        if (Robot.oi.getButtonState(RobotMap.SET_SHOOTER_DEF) != privDefButState) {
             privDefButState = !privDefButState;
             if (privDefButState) {
                 isAtDefault = !isAtDefault;

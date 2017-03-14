@@ -60,13 +60,13 @@ public class Stirrer extends MonitoredSystem {
             default:
                 mixer.set(0);
         }
-        if (Robot.oi.getButSt(RobotMap.MIXER_FWD) != privFwdButState) {
+        if (Robot.oi.getButtonState(RobotMap.MIXER_FWD) != privFwdButState) {
             privFwdButState = !privFwdButState;
             if (privFwdButState) {
                 state = state.fwdPressed();
             }
         }
-        if (Robot.oi.getButSt(RobotMap.MIXER_BWD) != privBwdButState) {
+        if (Robot.oi.getButtonState(RobotMap.MIXER_BWD) != privBwdButState) {
             privBwdButState = !privBwdButState;
             if (privBwdButState) {
                 state = state.bwdPressed();

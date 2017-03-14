@@ -46,11 +46,6 @@ public class Intaker extends MonitoredSystem {
     }
 
     public void intake() {
-//        if(state){
-//            intakeMotor.set(RobotMap.INTAKE_DEF);
-//        }else {
-//            intakeMotor.set(-RobotMap.INTAKE_DEF);
-//        }
         switch (state) {
             case BACKWARD:
                 intakeMotor.set(-RobotMap.INTAKE_DEF);
@@ -65,13 +60,13 @@ public class Intaker extends MonitoredSystem {
                 intakeMotor.set(0);
                 break;
         }
-        if (Robot.oi.getButSt(RobotMap.INTAKE_FWD) != privFwdButState) {
+        if (Robot.oi.getButtonState(RobotMap.INTAKE_FWD) != privFwdButState) {
             privFwdButState = !privFwdButState;
             if (privFwdButState) {
                 state = state.fwdPressed();
             }
         }
-        if (Robot.oi.getButSt(RobotMap.INTAKE_BWD) != privBwdButState) {
+        if (Robot.oi.getButtonState(RobotMap.INTAKE_BWD) != privBwdButState) {
             privBwdButState = !privBwdButState;
             if (privBwdButState) {
                 state = state.bwdPressed();
