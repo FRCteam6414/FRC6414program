@@ -17,38 +17,49 @@ public class Autonomous extends Command {
         requires(Robot.chassis);
     }
 
-
     /**
      * The initialize method is called just before the first time
      * this Command is run after being started.
-     *
+     * make sure robot will atop after 15s
      */
     protected void initialize() {
-        this.setTimeout(15);
+        this.setTimeout(RobotMap.AUTO_TIMEOUT);
     }
 
     /**
+     * constructor
+     * speed: max=1, min=0, f'(x)=-2sqrt(a)/(2sqrt(-x+a))
+     * f(x)=sqrt(-x+a)/sqrt(a) => sqrt(-x/a+1)
+     *
      * @param distant distant form robot to the wall of control station (average)
      * @return the speed it should go at a certain distance. Closer, slower.
-     * max=1, min=0, f'(x)=-2sqrt(a)/(2sqrt(-x+a))
-     * f(x)=sqrt(-x+a)/sqrt(a) => sqrt(-x/a+1)
      */
     private double speed(double distant) {
         return Math.sqrt(-distant / RobotMap.START_DISTANT + 1);
     }
 
+    /**
+     * @return get average distance of both sensor
+     */
     private double getDistance() {
         return 0.5 * (Robot.uSensor.getLeftDistant() + Robot.uSensor.getRightDistant());
     }
 
+    /**
+     * get turning speed
+     *
+     * @return From 0.5 to -0.5. Reach Max / Min when perform a 45 degree angle to the wall
+     */
     private double getRotate() {
-        return (Robot.uSensor.getRightDistant() - Robot.uSensor.getLeftDistant())
-                / 1.414 * RobotMap.SENSOR_DIST;
+        return Robot.limit(-1, 1,
+                (Robot.uSensor.getRightDistant() - Robot.uSensor.getLeftDistant())
+                        / 2 * Math.sqrt(2) * RobotMap.SENSOR_DIST);
     }
 
     /**
      * The execute method is called repeatedly when this Command is
      * scheduled to run until this Command either finishes or is canceled.
+     * Make robot go at the speed we calculated above
      */
     protected void execute() {
         Robot.chassis.move(speed(getDistance()), getRotate());
@@ -56,24 +67,12 @@ public class Autonomous extends Command {
 
 
     /**
-     * <p>
-     * Returns whether this command is finished. If it is, then the command will be removed and
-     * {@link #end()} will be called.
-     * </p><p>
-     * It may be useful for a team to reference the {@link #isTimedOut()}
-     * method for time-sensitive commands.
-     * </p><p>
-     * Returning false will result in the command never ending automatically. It may still be
-     * cancelled manually or interrupted by another command. Returning true will result in the
-     * command executing once and finishing immediately. It is recommended to use
-     * {@link edu.wpi.first.wpilibj.command.InstantCommand} (added in 2017) for this.
-     * </p>
-     *
+     * Die at time out
      * @return whether this command is finished.
      * @see Command#isTimedOut() isTimedOut()
      */
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
 
@@ -82,6 +81,7 @@ public class Autonomous extends Command {
      * after {@link #isFinished()} returns true. This is where you may want to
      * wrap up loose ends, like shutting off a motor that was being used in the
      * command.
+     * Stop the chassis for safty reason
      */
     protected void end() {
         Robot.chassis.stop();

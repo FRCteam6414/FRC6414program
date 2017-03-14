@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public abstract class MonitoredSystem extends Subsystem {
 
-    private Thread monitor;                 //The thread used to mkonitor the whole subsystem
+    private Thread monitor;                 //This thread is used to monitor the whole subsystem
     private boolean isRunning = true;       //run state indicator.
     private long sleepTime = 200;           //How many milliseconds between 2 inspect
 
@@ -60,9 +60,8 @@ public abstract class MonitoredSystem extends Subsystem {
     }
 
     /**
-     * Empty, Make it sure to override it in subsystems.
+     * Empty. Make sure to override it in subsystems.
      */
     @Override
-    protected void initDefaultCommand() {
-    }
+    protected abstract void initDefaultCommand();
 }
