@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team6414.robot.commands.Move;
+import org.usfirst.frc.team6414.robot.commands.Autonomous;
+import org.usfirst.frc.team6414.robot.commands.Autonomous2;
 import org.usfirst.frc.team6414.robot.subsystems.*;
 
 /**
@@ -26,14 +27,9 @@ public class Robot extends IterativeRobot {
     public static final Intaker intaker = new Intaker();
     public static final Stirrer stirrer = new Stirrer();
     public static final USensor uSensor = new USensor();
-//    private static boolean isEnabled = false;
 
     private Command autonomousCommand;
     private SendableChooser<Command> chooser = new SendableChooser<>();
-
-//    public static boolean staticIsEnabled() {
-//        return isEnabled;
-//    }
 
     public static double limit(double min, double max, double input) {
         return input > max ? max
@@ -47,15 +43,18 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
+        chooser.addDefault("gear", new Autonomous());
+        chooser.addObject("baseline", new Autonomous2());
+        SmartDashboard.putData("Auto", chooser);
+
         oi = new OI();
-        chooser.addDefault("Default Auto", new Move());
-//		 chooser.addObject("My Auto", new MyAutoCommand());
-//		SmartDashboard.putData("Auto mode", chooser);
 
-
-        UsbCamera cam = CameraServer.getInstance().startAutomaticCapture();
+        UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
         cam.setResolution(640, 480);
         cam.setFPS(60);
+        UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(1);
+        cam1.setResolution(640, 480);
+        cam1.setFPS(60);
         SmartDashboard.putString("Robot State:", "started");
         System.out.println("Robot init");
         chassis.startMonitor();
@@ -78,7 +77,6 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void disabledInit() {
-//        isEnabled = false;
         chassis.stopMonitor();
         intaker.stopMonitor();
         shooter.stopMonitor();
@@ -105,7 +103,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
         autonomousCommand = chooser.getSelected();
-
 		/*
          * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -114,8 +111,8 @@ public class Robot extends IterativeRobot {
 		 */
 
         // schedule the autonomous command (example)
-        if (autonomousCommand != null)
-            autonomousCommand.start();
+//        autonomousCommand = new Autonomous2();
+        autonomousCommand.start();
     }
 
     /**
@@ -132,8 +129,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null)
-            autonomousCommand.cancel();
+        autonomousCommand.cancel();
     }
 
     /**

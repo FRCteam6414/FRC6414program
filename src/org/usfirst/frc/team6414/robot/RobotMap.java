@@ -24,6 +24,7 @@ public class RobotMap {
     public static final int LEFT_SHOOTER = 6;
     public static final int RIGHT_SHOOTER = 7;
     public static final int MIXER_MOTOR = 8;
+    public static final int CHASSIS_REV = 10;
 
     public static final double INTAKE_DEF = 1;              //Default speed
     public static final double SHOOTER_DEFAULT = 0.7;
@@ -37,5 +38,6 @@ public class RobotMap {
     public static final double SPEED_OF_SOUND = 340;
     public static final double SENSOR_DIST = 100;
     public static final double START_DISTANT = 300;
-    public static final int AUTO_TIMEOUT = 15;
+    public static final double AUTO_TIMEOUT = 2.5;
+    public static final double AUTO_TIMEOUT2 = 5;
 }

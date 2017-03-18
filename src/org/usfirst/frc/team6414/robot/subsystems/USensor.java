@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6414.robot.RobotMap;
-import org.usfirst.frc.team6414.robot.commands.Autonomous;
 
 /**
  * Created by willson on 2017/3/11.
@@ -58,6 +57,10 @@ public class USensor extends MonitoredSystem {
         });
     }
 
+    private double square(double in) {
+        return in * in;
+    }
+
     public double getLeftDistant() {
         return leftDistant;
     }
@@ -66,9 +69,13 @@ public class USensor extends MonitoredSystem {
         return rightDistant;
     }
 
+    public double getDistant() {
+        return (0.5 * RobotMap.SENSOR_DIST * (leftDistant + rightDistant)) / Math.sqrt(square(RobotMap.SENSOR_DIST) + square(leftDistant - rightDistant));
+    }
+
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new Autonomous());
+//        setDefaultCommand(new Autonomous());
     }
 }
 

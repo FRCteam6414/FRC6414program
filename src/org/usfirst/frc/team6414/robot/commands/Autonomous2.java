@@ -11,9 +11,9 @@ import org.usfirst.frc.team6414.robot.RobotMap;
  * @author willson
  *         published under GNU Protocol
  */
-public class Autonomous extends Command {
+public class Autonomous2 extends Command {
 
-    public Autonomous() {
+    public Autonomous2() {
         requires(Robot.chassis);
     }
 
@@ -23,7 +23,7 @@ public class Autonomous extends Command {
      * make sure robot will atop after 15s
      */
     protected void initialize() {
-        this.setTimeout(RobotMap.AUTO_TIMEOUT);
+        this.setTimeout(RobotMap.AUTO_TIMEOUT2);
     }
 
     /**
@@ -62,6 +62,7 @@ public class Autonomous extends Command {
 
     /**
      * Die at time out
+     *
      * @return whether this command is finished.
      * @see Command#isTimedOut() isTimedOut()
      */
