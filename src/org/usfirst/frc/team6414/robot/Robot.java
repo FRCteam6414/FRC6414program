@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team6414.robot.commands.Autonomous;
-import org.usfirst.frc.team6414.robot.commands.Autonomous2;
+import org.usfirst.frc.team6414.robot.commands.BaseLine;
+import org.usfirst.frc.team6414.robot.commands.HangGear;
 import org.usfirst.frc.team6414.robot.subsystems.*;
 
 /**
@@ -43,8 +43,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-        chooser.addDefault("gear", new Autonomous());
-        chooser.addObject("baseline", new Autonomous2());
+        chooser.addDefault("gear", new HangGear());
+        chooser.addObject("baseline", new BaseLine());
         SmartDashboard.putData("Auto", chooser);
 
         oi = new OI();
@@ -111,7 +111,7 @@ public class Robot extends IterativeRobot {
 		 */
 
         // schedule the autonomous command (example)
-//        autonomousCommand = new Autonomous2();
+//        autonomousCommand = new BaseLine();
         autonomousCommand.start();
     }
 

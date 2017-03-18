@@ -11,9 +11,9 @@ import org.usfirst.frc.team6414.robot.RobotMap;
  * @author willson
  *         published under GNU Protocol
  */
-public class Autonomous extends Command {
+public class HangGear extends Command {
 
-    public Autonomous() {
+    public HangGear() {
         requires(Robot.chassis);
     }
 
@@ -26,7 +26,7 @@ public class Autonomous extends Command {
         this.setTimeout(RobotMap.AUTO_TIMEOUT);
     }
 
-    /**
+    /*
      * constructor
      * speed: max=1, min=0, f'(x)=-2sqrt(a)/(2sqrt(-x+a))
      * f(x)=sqrt(-x+a)/sqrt(a) => sqrt(-x/a+1)
@@ -34,20 +34,20 @@ public class Autonomous extends Command {
      * @param distant distant form robot to the wall of control station (average)
      * @return the speed it should go at a certain distance. Closer, slower.
      */
-    private double speed(double distant) {
-        return Math.sqrt(-distant / RobotMap.START_DISTANT + 1);
-    }
+//    private double speed(double distant) {
+//        return Math.sqrt(-distant / RobotMap.START_DISTANT + 1);
+//    }
 
-    /**
+    /*
      * get turning speed
      *
      * @return From 0.5 to -0.5. Reach Max / Min when perform a 45 degree angle to the wall
      */
-    private double getRotate() {
-        return Robot.limit(-1, 1,
-                (Robot.uSensor.getRightDistant() - Robot.uSensor.getLeftDistant())
-                        / 2 * Math.sqrt(2) * RobotMap.SENSOR_DIST);
-    }
+//    private double getRotate() {
+//        return Robot.limit(-1, 1,
+//                (Robot.uSensor.getRightDistant() - Robot.uSensor.getLeftDistant())
+//                        / 2 * Math.sqrt(2) * RobotMap.SENSOR_DIST);
+//    }
 
     /**
      * The execute method is called repeatedly when this Command is
